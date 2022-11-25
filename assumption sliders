@@ -165,8 +165,8 @@ $("#productimpactemissions").text( avoidedemissions ).toFixed(2);;
     $(function () {
     
         //human-needs-market-size
-        let idOfSlider = 'market-size';
-        let idOfSliderValue = 'market-size-value';
+        let idOfSlider = 'human-needs-market-size';
+        let idOfSliderValue = 'human-needs-market-size-value';
 
 
         $('#' + idOfSlider).css('display', 'none');
@@ -194,12 +194,12 @@ $("#productimpactemissions").text( avoidedemissions ).toFixed(2);;
       
     });
     
-       //market-share 
+       //human-needs-market-share 
         $(function () {
     
         
-     let idOfSlider = 'market-share';
-        let idOfSliderValue = 'market-share-value';
+     let idOfSlider = 'human-needs-market-share';
+        let idOfSliderValue = 'human-needs-market-share-value';
 
 
         $('#' + idOfSlider).css('display', 'none');
@@ -225,12 +225,12 @@ $("#productimpactemissions").text( avoidedemissions ).toFixed(2);;
 				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
     });
     
-      //improvement-factor
+      //human-needs-improvement-factor
         $(function () {
     
         
-     let idOfSlider = 'improvement-factor';
-        let idOfSliderValue = 'improvement-factor-value';
+     let idOfSlider = 'human-needs-improvement-factor';
+        let idOfSliderValue = 'human-needs-improvement-factor-value';
 
 
         $('#' + idOfSlider).css('display', 'none');
@@ -256,12 +256,12 @@ $("#productimpactemissions").text( avoidedemissions ).toFixed(2);;
 				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
     });
     
-          //substitution-factor
+          //human-needs-substitution-factor
         $(function () {
     
         
-     let idOfSlider = 'substitution-factor';
-        let idOfSliderValue = 'substitution-factor-value';
+     let idOfSlider = 'human-needs-substitution-factor';
+        let idOfSliderValue = 'human-needs-substitution-factor-value';
 
 
         $('#' + idOfSlider).css('display', 'none');
