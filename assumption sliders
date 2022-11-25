@@ -1,0 +1,310 @@
+<script src="https://refreshless.com/nouislider/dist/nouislider.js?v=1550"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script src="https://refreshless.com/nouislider/documentation/assets/wNumb.js"></script>
+
+<script>
+    $(function () {
+    
+        //market-size
+        let idOfSlider = 'market-size';
+        let idOfSliderValue = 'market-size-value';
+
+
+        $('#' + idOfSlider).css('display', 'none');
+        $("<div></div>").insertAfter('#' + idOfSlider);
+
+        var single = $('#' + idOfSlider).next()[0];
+        noUiSlider.create(single, {
+            start: [{{wf {&quot;path&quot;:&quot;total-product-impact-market-size&quot;,&quot;type&quot;:&quot;Number&quot;\} }}],
+            range: {
+                'min': 0,
+                'max': 19000
+            },
+            step: 1,
+            tooltips: [
+                wNumb({decimals: 0,prefix:''}),
+            ],
+        });
+        var valueSingle = document.getElementById(idOfSlider);
+        single.noUiSlider.on('update', function (values) {
+            $('#' + idOfSlider).val(values);
+            $('#' + idOfSliderValue).text(values);
+        });
+				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
+
+      
+    });
+    
+       //market-share 
+        $(function () {
+    
+        
+     let idOfSlider = 'market-share';
+        let idOfSliderValue = 'market-share-value';
+
+
+        $('#' + idOfSlider).css('display', 'none');
+        $("<div></div>").insertAfter('#' + idOfSlider);
+
+        var single = $('#' + idOfSlider).next()[0];
+        noUiSlider.create(single, {
+            start: [{{wf {&quot;path&quot;:&quot;total-product-impact-market-share&quot;,&quot;type&quot;:&quot;Number&quot;\} }}],
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            step: 1,
+            tooltips: [
+                wNumb({decimals: 0,prefix:''}),
+            ],
+        });
+        var valueSingle = document.getElementById(idOfSlider);
+        single.noUiSlider.on('update', function (values) {
+            $('#' + idOfSlider).val(values);
+            $('#' + idOfSliderValue).text(values);
+        });
+				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
+    });
+    
+      //improvement-factor
+        $(function () {
+    
+        
+     let idOfSlider = 'improvement-factor';
+        let idOfSliderValue = 'improvement-factor-value';
+
+
+        $('#' + idOfSlider).css('display', 'none');
+        $("<div></div>").insertAfter('#' + idOfSlider);
+
+        var single = $('#' + idOfSlider).next()[0];
+        noUiSlider.create(single, {
+            start: [{{wf {&quot;path&quot;:&quot;total-product-impact-improvement-factor-for-innovation&quot;,&quot;type&quot;:&quot;Number&quot;\} }}],
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            step: 1,
+            tooltips: [
+                wNumb({decimals: 0,prefix:''}),
+            ],
+        });
+        var valueSingle = document.getElementById(idOfSlider);
+        single.noUiSlider.on('update', function (values) {
+            $('#' + idOfSlider).val(values);
+            $('#' + idOfSliderValue).text(values);
+        });
+				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
+    });
+    
+          //substitution-factor
+        $(function () {
+    
+        
+     let idOfSlider = 'substitution-factor';
+        let idOfSliderValue = 'substitution-factor-value';
+
+
+        $('#' + idOfSlider).css('display', 'none');
+        $("<div></div>").insertAfter('#' + idOfSlider);
+
+        var single = $('#' + idOfSlider).next()[0];
+        noUiSlider.create(single, {
+            start: [{{wf {&quot;path&quot;:&quot;total-product-impact-substitution-factor&quot;,&quot;type&quot;:&quot;Number&quot;\} }}],
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            step: 1,
+            tooltips: [
+                wNumb({decimals: 0,prefix:''}),
+            ],
+        });
+        var valueSingle = document.getElementById(idOfSlider);
+        single.noUiSlider.on('update', function (values) {
+            $('#' + idOfSlider).val(values);
+            $('#' + idOfSliderValue).text(values);
+        });
+				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
+    });
+
+
+</script>
+
+
+<script>
+      //CALCULATIONS Product service
+$(document).ready(function(){
+
+    $("#apply-product-assumptions").click(function(){
+    		var marketSize = parseInt($("#market-size-value").text(), 10);
+				var marketShare = parseInt($("#market-share-value").text(), 10);
+        var CO2perYear = ( {{wf {&quot;path&quot;:&quot;total-product-impact-co2e-year-unit&quot;,&quot;type&quot;:&quot;Number&quot;\} }} );
+        var improvementFactor = parseInt($("#improvement-factor-value").text(), 10);
+        var improvementFactorPercentage = (improvementFactor / 100).toFixed(2);
+        var subFactor = parseInt($("#substitution-factor-value").text(), 10);
+        var subFactorPercentage = (subFactor / 100).toFixed(2);
+				var marketPercentage = (marketShare / 100).toFixed(2);
+        var productResult = (marketSize * marketPercentage) * (CO2perYear * improvementFactorPercentage) * subFactorPercentage;
+        alert("Value: " + productResult);
+        
+    
+        var avoidedemissions = (productResult).toFixed(2);
+ var totalavoidedemissions = ( productResult + {{wf {&quot;path&quot;:&quot;total-human-needs-impact-market-size&quot;,&quot;type&quot;:&quot;Number&quot;\} }} + {{wf {&quot;path&quot;:&quot;system-delivering-on-human-needs-market-size&quot;,&quot;type&quot;:&quot;Number&quot;\} }} );;
+var totalproductimpactwidth = ( productResult / totalavoidedemissions ) * 100;
+        alert("impact width: " + totalproductimpactwidth + ' total avoided: ' + totalavoidedemissions );
+$("#bluebar").css("width", totalproductimpactwidth + "%");
+
+$("#productimpactemissions").text( avoidedemissions ).toFixed(2);;
+    });
+
+});
+</script>
+
+<script>
+    $(function () {
+    
+        //human-needs-market-size
+        let idOfSlider = 'market-size';
+        let idOfSliderValue = 'market-size-value';
+
+
+        $('#' + idOfSlider).css('display', 'none');
+        $("<div></div>").insertAfter('#' + idOfSlider);
+
+        var single = $('#' + idOfSlider).next()[0];
+        noUiSlider.create(single, {
+            start: [{{wf {&quot;path&quot;:&quot;total-product-impact-market-size&quot;,&quot;type&quot;:&quot;Number&quot;\} }}],
+            range: {
+                'min': 0,
+                'max': 19000
+            },
+            step: 1,
+            tooltips: [
+                wNumb({decimals: 0,prefix:''}),
+            ],
+        });
+        var valueSingle = document.getElementById(idOfSlider);
+        single.noUiSlider.on('update', function (values) {
+            $('#' + idOfSlider).val(values);
+            $('#' + idOfSliderValue).text(values);
+        });
+				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
+
+      
+    });
+    
+       //market-share 
+        $(function () {
+    
+        
+     let idOfSlider = 'market-share';
+        let idOfSliderValue = 'market-share-value';
+
+
+        $('#' + idOfSlider).css('display', 'none');
+        $("<div></div>").insertAfter('#' + idOfSlider);
+
+        var single = $('#' + idOfSlider).next()[0];
+        noUiSlider.create(single, {
+            start: [{{wf {&quot;path&quot;:&quot;total-product-impact-market-share&quot;,&quot;type&quot;:&quot;Number&quot;\} }}],
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            step: 1,
+            tooltips: [
+                wNumb({decimals: 0,prefix:''}),
+            ],
+        });
+        var valueSingle = document.getElementById(idOfSlider);
+        single.noUiSlider.on('update', function (values) {
+            $('#' + idOfSlider).val(values);
+            $('#' + idOfSliderValue).text(values);
+        });
+				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
+    });
+    
+      //improvement-factor
+        $(function () {
+    
+        
+     let idOfSlider = 'improvement-factor';
+        let idOfSliderValue = 'improvement-factor-value';
+
+
+        $('#' + idOfSlider).css('display', 'none');
+        $("<div></div>").insertAfter('#' + idOfSlider);
+
+        var single = $('#' + idOfSlider).next()[0];
+        noUiSlider.create(single, {
+            start: [{{wf {&quot;path&quot;:&quot;total-product-impact-improvement-factor-for-innovation&quot;,&quot;type&quot;:&quot;Number&quot;\} }}],
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            step: 1,
+            tooltips: [
+                wNumb({decimals: 0,prefix:''}),
+            ],
+        });
+        var valueSingle = document.getElementById(idOfSlider);
+        single.noUiSlider.on('update', function (values) {
+            $('#' + idOfSlider).val(values);
+            $('#' + idOfSliderValue).text(values);
+        });
+				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
+    });
+    
+          //substitution-factor
+        $(function () {
+    
+        
+     let idOfSlider = 'substitution-factor';
+        let idOfSliderValue = 'substitution-factor-value';
+
+
+        $('#' + idOfSlider).css('display', 'none');
+        $("<div></div>").insertAfter('#' + idOfSlider);
+
+        var single = $('#' + idOfSlider).next()[0];
+        noUiSlider.create(single, {
+            start: [{{wf {&quot;path&quot;:&quot;total-product-impact-substitution-factor&quot;,&quot;type&quot;:&quot;Number&quot;\} }}],
+            range: {
+                'min': 0,
+                'max': 100
+            },
+            step: 1,
+            tooltips: [
+                wNumb({decimals: 0,prefix:''}),
+            ],
+        });
+        var valueSingle = document.getElementById(idOfSlider);
+        single.noUiSlider.on('update', function (values) {
+            $('#' + idOfSlider).val(values);
+            $('#' + idOfSliderValue).text(values);
+        });
+				$('[data-tooltip-pos]').next().children().find('.noUi-tooltip').addClass('bottom')
+    });
+
+
+</script>
+
+
+
+         //CALCULATIONS System of use and delivery on human needs
+              
+                  $("#apply-human-need-assumptions").click(function(){
+    		var marketSize = parseInt($("#market-size-value").text(), 10);
+				var marketShare = parseInt($("#market-share-value").text(), 10);
+        var CO2perYear = ( {{wf {&quot;path&quot;:&quot;system-delivering-on-human-needs-co2e-year-unit&quot;,&quot;type&quot;:&quot;Number&quot;\} }} );
+        var improvementFactor = parseInt($("#improvement-factor-value").text(), 10);
+        var improvementFactorPercentage = (improvementFactor / 100).toFixed(2);
+        var subFactor = parseInt($("#substitution-factor-value").text(), 10);
+        var subFactorPercentage = (subFactor / 100).toFixed(2);
+				var marketPercentage = (marketShare / 100).toFixed(2);
+        var productResult = (marketSize * marketPercentage) * (CO2perYear * improvementFactorPercentage) * subFactorPercentage;
+        alert("Value: " + productResult);
+              
+        
+
