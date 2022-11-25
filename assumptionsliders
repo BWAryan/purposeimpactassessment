@@ -1,7 +1,3 @@
-<script src="https://refreshless.com/nouislider/dist/nouislider.js?v=1550"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script src="https://refreshless.com/nouislider/documentation/assets/wNumb.js"></script>
-
 <script>
     $(function () {
     
